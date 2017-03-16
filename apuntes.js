@@ -1,4 +1,3 @@
-
 /* Vanilla Javascript 
 
 window.addEventListener('load', function(){
@@ -144,7 +143,6 @@ $(function(){
   });
 
   header.append(a);
-
   a.addClass('danger');
 
   setTimeout(function(){
@@ -154,9 +152,89 @@ $(function(){
 });
 
 
+/* Ejemplos de Closure */
+const name = 'Arnold';
+
+function alerta(){
+	alert('Hola' + name);
+}
 
 
+/* Eventos Funciones y Callbacks */
+function suma(num1, num2){
+	return num1 + num2;
+}
 
+function resta(num1,num2){
+	return num1 - num2;
+}
+
+function division(num1,num2){
+	return num1 / num2;
+}
+
+function multiplicacion(num1,num2){
+	return num1 * num2;
+}
+
+function calculadora(cuenta, num1, num2){
+	return cuenta(num1, num2);
+}
+
+
+calculadora(suma, 1, 3);
+
+/* Callbacks Asíncronos */
+var postId = "123187039";
+
+obtenerLikes(postId, function(likes){
+	alert("Se encontraron " + likes.lenght + " likes");
+});
+
+
+function obtenerLikes(postId, fn){
+	setTimeout(function(){
+		fn(['123132a34534519874639', '123a34534519864639', '123132a34534519874659'])
+	}, 5000);
+}
+
+/* Eventos */
+
+// Vanilla Javascript
+var button = document.getElementById('myButton');
+
+button.addEventListener('click', function(event){
+	alert('Me hicieron Click');
+});
+
+
+// jQuery
+$('#button').click(function(){
+	alert('Me Hicieron Click');
+});
+
+$('#button').on('click', function(){
+	alert('Me Hicieron Click');	
+});
+
+$('.product button.like').click(function(event) {
+	$(this)
+		.closest('.product')
+		.addClass('liked');
+});
+
+
+/* Múltiples Eventos un solo Handler */
+$('input').on('click change', function(event) {
+	event.preventDefault();
+	console.log("Me hicieron Click o me cambiaron el texto");
+});
+
+/* Múltiples Eventos un diferentes Handlers */
+$('p').on({
+	"click": function(){console.log("Me hicieron ckick");},
+	"mouser": function(){console.log("Me pasaron el mouse por arriba");}
+});
 
 
 
