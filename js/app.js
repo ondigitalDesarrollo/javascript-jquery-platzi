@@ -1,19 +1,20 @@
 $(function() {
 
-	var $tvShowsContainer = $('#app-body').find('.tv-shows');
+	var $tvShowsContainer = $('#app-body').find('.tv-shows')
 
   function renderShows(shows) {
-    $tvShowsContainer.find('.loader').remove();
+    $tvShowsContainer.find('.loader').remove()
     shows.forEach(function (show) {
       var article = template
         .replace(':name:', show.name)
         .replace(':img:', show.image ? show.image.medium : '')
         .replace(':summary:', show.summary)
+        .replace(':enlace:', show.url)
         .replace(':img alt:', show.name + " Logo")
 
       var $article = $(article)
-      $article.hide();
-      $tvShowsContainer.append($article.show());
+      $article.hide()
+      $tvShowsContainer.append($article.show())
     })
   }
 
@@ -24,22 +25,23 @@ $(function() {
   $('#app-body')
     .find('form')
     .submit(function (ev) {
-      ev.preventDefault();
+      ev.preventDefault()
       var busqueda = $(this)
         .find('input[type="text"]')
-        .val();
+        .val()
       $tvShowsContainer.find('.tv-show').remove()
-      var $loader = $('<div class="loader">');
-      $loader.appendTo($tvShowsContainer);
+      var $loader = $('<div class="loader">')
+      $loader.appendTo($tvShowsContainer)
       $.ajax({
         url: 'http://api.tvmaze.com/search/shows',
         data: { q: busqueda },
         success: function (res, textStatus, xhr) {
-          $loader.remove();
+          console.log(res)
+          $loader.remove()
           var shows = res.map(function (el) {
-            return el.show;
+            return el.show
           })
-          renderShows(shows);          
+          renderShows(shows)          
         }
       })
     })
@@ -53,21 +55,22 @@ $(function() {
           '<div class="right info">' +
             '<h1>:name:</h1>' +
             '<p>:summary:</p>' +
+            '<a href=":enlace:" target="_blank">Ver Serie</a>'
           '</div>' +
-        '</article>';
+        '</article>'
 
 
   if (!localStorage.shows) {
     $.ajax('http://api.tvmaze.com/shows')
       .then(function (shows) {
-        $tvShowsContainer.find('.loader').remove();
-        localStorage.shows = JSON.stringify(shows);
-        renderShows(shows);
+        $tvShowsContainer.find('.loader').remove()
+        localStorage.shows = JSON.stringify(shows)
+        renderShows(shows)
       })
   } else {
-    renderShows(JSON.parse(localStorage.shows));
+    renderShows(JSON.parse(localStorage.shows))
   }
 
 
 
-});
+})
