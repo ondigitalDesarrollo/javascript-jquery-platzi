@@ -2,6 +2,19 @@ $(function() {
 
 	var $tvShowsContainer = $('#app-body').find('.tv-shows')
 
+  $tvShowsContainer.on("click", 'button.like', function(event){
+    // event.preventDefault();
+    var $this = $(this);
+    $this.closest('.tv-show').toggleClass('liked');
+    /*$this.animate({
+      'fontSize': '30px',
+      'color' : '#ff0000'},
+      'fast', function() {
+        console.log("Evento Completado");
+    });
+    */
+  })
+
   function renderShows(shows) {
     $tvShowsContainer.find('.loader').remove()
     shows.forEach(function (show) {
@@ -14,7 +27,7 @@ $(function() {
 
       var $article = $(article)
       $article.hide()
-      $tvShowsContainer.append($article.show())
+      $tvShowsContainer.append($article.fadeIn('slow'))
     })
   }
 
@@ -55,6 +68,7 @@ $(function() {
           '<div class="right info">' +
             '<h1>:name:</h1>' +
             '<p>:summary:</p>' +
+            '<button class="like" id="like">❤</button>' +
             '<a href=":enlace:" target="_blank">Ver Serie</a>'
           '</div>' +
         '</article>'
