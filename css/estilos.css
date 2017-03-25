@@ -20,6 +20,7 @@ body {
 	position: fixed;
 	background-color: #2ecc71;
 	text-align: center;
+	z-index: 99;
 }
 
 #app-header h1{
@@ -101,6 +102,7 @@ body {
 	padding: 16px;
 	background-color: #fff;
 	margin-bottom: 16px;
+	position: relative;
 }
 
 .tv-show h2{
@@ -131,4 +133,30 @@ body {
 
 .right{
 	float: right;
+}
+
+/* Emoji */
+.tv-show button.like{
+	background: transparent;
+	outline: 0;
+	border: none;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	font-size: 22px;
+	cursor: pointer;
+	transition: all 200ms ease-in-out;
+}
+
+.tv-show.liked{
+	background-color: #e08283;
+
+}
+
+.tv-show.liked:hover{
+	background-color: #f1a9a0;
+}
+
+.tv-show.liked button.like{
+	font-size: 30px;
 }
