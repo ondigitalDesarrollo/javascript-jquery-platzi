@@ -1,0 +1,27 @@
+doctype html(lang='es')
+head
+    meta(name='viewport', content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0')
+
+    meta(charset='UTF-8')
+     
+    title TVify
+     
+    link(href='https://fonts.googleapis.com/css?family=Roboto', rel='stylesheet')
+    
+    link(rel='stylesheet', href='css/estilos.css')
+body
+  #app-container
+    header#app-header(data-title='TVfy')
+      h1.title TVify
+    section#app-body
+      form.search-form(action='')
+        input(type='text')
+        button(type='submit') Consultar
+      // Tv Shows
+      .tv-shows
+        // Loader
+        .loader
+    footer#app-footer
+      p Hecho con &lt;3 por Arnold Restrepo
+  script(src="https://code.jquery.com/jquery-3.2.1.js")
+  script(src='js/bundle.js')
